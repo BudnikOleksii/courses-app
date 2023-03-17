@@ -14,7 +14,7 @@ interface IMetaData {
   fullCourseProductFamily?: string;
 }
 
-interface ILesson {
+export interface ILesson {
   id: string;
   duration: number;
   link: string;

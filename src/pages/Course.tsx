@@ -5,14 +5,15 @@ import { selectCourses } from '../features/courses/courses-selectors';
 import { registerAction } from '../features/actions-info/actions-info-slice';
 import { courseLoadingStart } from '../features/courses/courses-slice';
 import { selectIsActionInProcess } from '../features/actions-info/actions-info-selector';
+import Box from '@mui/material/Box';
 import { CourseCard } from '../components/organisms/CourseCard';
+import { LessonsBlock } from '../components/organisms/LessonsBlock';
 
 const Course = () => {
   const { courseId = '' } = useParams();
   const dispatch = useAppDispatch();
   const { selectedCourse } = useAppSelector(selectCourses);
   const isLoading = useAppSelector(selectIsActionInProcess(courseLoadingStart.type));
-  console.log(selectedCourse?.lessons[0]);
 
   useEffect(() => {
     if (courseId) {
@@ -22,11 +23,16 @@ const Course = () => {
   }, [courseId]);
 
   return (
-    <div>
-      {selectedCourse && !isLoading && <CourseCard course={selectedCourse} />}
+    <>
+      {selectedCourse && !isLoading && (
+        <Box component="section">
+          <CourseCard course={selectedCourse} />
+          <LessonsBlock lessons={selectedCourse.lessons} />
+        </Box>
+      )}
 
       {!selectedCourse && !isLoading && <p>NOT FOUND</p>}
-    </div>
+    </>
   );
 };
 

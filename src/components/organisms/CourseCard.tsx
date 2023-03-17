@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ICourse } from '../../types/course';
-import Card from '@mui/material/Card';
+import { CardItem } from '../atoms/CardItem';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -46,14 +46,7 @@ export const CourseCard: FC<Props> = ({ course }) => {
 
   return (
     <Grid item>
-      <Card
-        sx={{
-          display: 'flex',
-          p: 2,
-          flexDirection: { xs: 'column', lg: 'row' },
-          maxWidth: '100%',
-        }}
-      >
+      <CardItem>
         <CardMedia
           component="img"
           image={previewImageLink + '/cover.webp'}
@@ -67,12 +60,7 @@ export const CourseCard: FC<Props> = ({ course }) => {
               {title}
             </Typography>
 
-            <Rating
-              name="half-rating-read"
-              defaultValue={rating}
-              precision={0.5}
-              readOnly
-            />
+            <Rating name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
 
             <Typography gutterBottom variant="subtitle1" component="p">
               {description}
@@ -92,7 +80,7 @@ export const CourseCard: FC<Props> = ({ course }) => {
                   <NumbersIcon />
                 </ListItemIcon>
 
-                <ListItemText primary={`Lessons: ${lessonsCount}`} />
+                <ListItemText primary={`Lessons: ${lessonsCount || 'Unknown'}`} />
               </ListItem>
 
               <ListItem disablePadding>
@@ -113,7 +101,7 @@ export const CourseCard: FC<Props> = ({ course }) => {
             </Button>
           </CardActions>
         </Box>
-      </Card>
+      </CardItem>
     </Grid>
   );
 };
