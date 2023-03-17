@@ -29,7 +29,7 @@ export const LessonCard: FC<Props> = ({ lesson }) => {
   const { previewImageLink, title, order, link, id, type, duration, status } = lesson;
 
   return (
-    <Grid item xs={12}>
+    <Grid item xs={12} sm={6}>
       <CardItem>
         <CardMedia
           component="img"
@@ -44,7 +44,7 @@ export const LessonCard: FC<Props> = ({ lesson }) => {
               {title}
             </Typography>
 
-            <List sx={{ display: 'flex' }}>
+            <List>
               <ListItem disablePadding>
                 <ListItemIcon>
                   <HourglassTopIcon />
@@ -56,7 +56,7 @@ export const LessonCard: FC<Props> = ({ lesson }) => {
               <ListItem disablePadding>
                 <ListItemIcon>{status === 'locked' ? <LockIcon /> : <LockOpenIcon />}</ListItemIcon>
 
-                <ListItemText primary="Status" />
+                <ListItemText primary={`Status: ${status}`} />
               </ListItem>
 
               <ListItem disablePadding>
