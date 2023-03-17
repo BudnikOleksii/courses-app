@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { ILesson } from '../../types/course';
-import Grid from '@mui/material/Grid';
 import { CardItem } from '../atoms/CardItem';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
@@ -14,8 +13,6 @@ import LockIcon from '@mui/icons-material/Lock';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import ArticleIcon from '@mui/icons-material/Article';
-import CardActions from '@mui/material/CardActions';
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
 const imagePlaceholder =
@@ -26,7 +23,7 @@ type Props = {
 };
 
 export const LessonCard: FC<Props> = ({ lesson }) => {
-  const { previewImageLink, title, order, link, id, type, duration, status } = lesson;
+  const { previewImageLink, title, order, type, duration, status } = lesson;
 
   return (
     <CardItem>

@@ -4,9 +4,10 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import LockIcon from '@mui/icons-material/Lock';
 import { LessonCard } from './LessonCard';
+import { purple } from '@mui/material/colors';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -27,12 +28,19 @@ type Props = {
 };
 
 export const LessonInfo: FC<Props> = ({ lesson, activeLessonId, onCurrentChange }) => {
-  const isVideo = lesson.type === 'video';
   const [open, setOpen] = useState(false);
+  const isVideo = lesson.type === 'video';
+  const isSelected = lesson.id === activeLessonId;
+  const isLocked = lesson.status === 'locked';
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const handleOpenLesson = () => {
+    if (isLocked) {
+      return;
+    }
+
     if (isVideo) {
       onCurrentChange(lesson);
     } else {
@@ -41,7 +49,14 @@ export const LessonInfo: FC<Props> = ({ lesson, activeLessonId, onCurrentChange 
   };
 
   return (
-    <ListItem>
+    <ListItem
+      sx={{
+        bgcolor: isLocked ? '#999' : isSelected ? purple[500] : '#fff',
+        marginBottom: '3px',
+        borderRadius: '10px',
+        color: isSelected ? '#fff' : '#000',
+      }}
+    >
       <ListItemText
         onClick={handleOpenLesson}
         primary={`${lesson.order}) ${lesson.title}`}
@@ -49,7 +64,7 @@ export const LessonInfo: FC<Props> = ({ lesson, activeLessonId, onCurrentChange 
       />
 
       <Button size="small" onClick={handleOpen}>
-        Info
+        {isLocked ? <LockIcon /> : 'Info'}
       </Button>
       <Modal
         open={open}
