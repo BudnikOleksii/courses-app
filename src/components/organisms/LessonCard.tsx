@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { ILesson } from '../../types/course';
-import Grid from '@mui/material/Grid';
 import { CardItem } from '../atoms/CardItem';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
@@ -14,8 +13,6 @@ import LockIcon from '@mui/icons-material/Lock';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import ArticleIcon from '@mui/icons-material/Article';
-import CardActions from '@mui/material/CardActions';
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
 const imagePlaceholder =
@@ -26,54 +23,48 @@ type Props = {
 };
 
 export const LessonCard: FC<Props> = ({ lesson }) => {
-  const { previewImageLink, title, order, link, id, type, duration, status } = lesson;
+  const { previewImageLink, title, order, type, duration, status } = lesson;
 
   return (
-    <Grid item xs={12} sm={6}>
-      <CardItem>
-        <CardMedia
-          component="img"
-          image={type === 'video' ? `${previewImageLink}/lesson-${order}.webp` : imagePlaceholder}
-          alt={title}
-          sx={{ width: { xs: '100%', lg: '50%' } }}
-        />
+    <CardItem>
+      <CardMedia
+        component="img"
+        image={type === 'video' ? `${previewImageLink}/lesson-${order}.webp` : imagePlaceholder}
+        alt={title}
+        sx={{ width: { xs: '100%', lg: '50%' } }}
+      />
 
-        <Box sx={{ width: { xs: '100%', lg: '50%' } }}>
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h3">
-              {title}
-            </Typography>
+      <Box sx={{ width: { xs: '100%', lg: '50%' } }}>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h3">
+            {title}
+          </Typography>
 
-            <List>
-              <ListItem disablePadding>
-                <ListItemIcon>
-                  <HourglassTopIcon />
-                </ListItemIcon>
+          <List>
+            <ListItem disablePadding>
+              <ListItemIcon>
+                <HourglassTopIcon />
+              </ListItemIcon>
 
-                <ListItemText primary={`Duration: ${duration}`} />
-              </ListItem>
+              <ListItemText primary={`Duration: ${duration}`} />
+            </ListItem>
 
-              <ListItem disablePadding>
-                <ListItemIcon>{status === 'locked' ? <LockIcon /> : <LockOpenIcon />}</ListItemIcon>
+            <ListItem disablePadding>
+              <ListItemIcon>{status === 'locked' ? <LockIcon /> : <LockOpenIcon />}</ListItemIcon>
 
-                <ListItemText primary={`Status: ${status}`} />
-              </ListItem>
+              <ListItemText primary={`Status: ${status}`} />
+            </ListItem>
 
-              <ListItem disablePadding>
-                <ListItemIcon>
-                  {type === 'video' ? <OndemandVideoIcon /> : <ArticleIcon />}
-                </ListItemIcon>
+            <ListItem disablePadding>
+              <ListItemIcon>
+                {type === 'video' ? <OndemandVideoIcon /> : <ArticleIcon />}
+              </ListItemIcon>
 
-                <ListItemText primary={`Type: ${type}`} />
-              </ListItem>
-            </List>
-          </CardContent>
-
-          <CardActions>
-            <Button size="large">View</Button>
-          </CardActions>
-        </Box>
-      </CardItem>
-    </Grid>
+              <ListItemText primary={`Type: ${type}`} />
+            </ListItem>
+          </List>
+        </CardContent>
+      </Box>
+    </CardItem>
   );
 };
