@@ -1,3 +1,5 @@
+import { Maybe } from './helper-types';
+
 interface ICourseVideoPreview {
   link: string;
   duration: number;
@@ -7,14 +9,28 @@ interface ICourseVideoPreview {
 interface IMetaData {
   slug: string;
   skills?: string[];
-  courseVideoPreview: ICourseVideoPreview;
+  courseVideoPreview?: ICourseVideoPreview;
+  fullCourseProductId?: string;
+  fullCourseProductFamily?: string;
+}
+
+interface ILesson {
+  id: string;
+  duration: number;
+  link: string;
+  meta: Maybe<IMetaData>;
+  order: number;
+  previewImageLink: string;
+  status: 'locked' | 'unlocked';
+  title: string;
+  type: 'article' | 'video';
 }
 
 export interface ICourse {
   id: string;
   title: string;
   tags: string[];
-  launchDate: string;
+  launchDate: string | 'launched';
   status: string;
   description: string;
   duration: number;
@@ -27,4 +43,8 @@ export interface ICourse {
 
 export interface ICoursesResponse {
   courses: ICourse[];
+}
+
+export interface ICourseResponse extends ICourse {
+  lessons: ILesson[];
 }

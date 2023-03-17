@@ -1,8 +1,16 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { getCourses } from '../../api/courses-service';
-import { coursesLoadingStart, coursesSuccess } from '../../features/courses/courses-slice';
-import { finishAction, setError } from '../../features/actions-info/actions-info-slice';
-import { ICoursesResponse } from '../../types/course';
+import { getCourse, getCourses } from '../../api/courses-service';
+import {
+  courseLoadingStart,
+  coursesLoadingStart,
+  coursesSuccess,
+  courseSuccess,
+} from '../../features/courses/courses-slice';
+import {
+  finishAction,
+  setError,
+} from '../../features/actions-info/actions-info-slice';
+import { ICourseResponse, ICoursesResponse } from '../../types/course';
 
 function* coursesWorker() {
   try {
@@ -16,8 +24,21 @@ function* coursesWorker() {
   }
 }
 
+function* courseWorker({ payload }: ReturnType<typeof courseLoadingStart>) {
+  try {
+    const course = (yield call(getCourse, payload.courseId)) as ICourseResponse;
+
+    yield put(courseSuccess(course));
+  } catch (error) {
+    yield put(setError(error));
+  } finally {
+    yield put(finishAction(courseLoadingStart.type));
+  }
+}
+
 function* coursesSaga() {
   yield takeEvery(coursesLoadingStart.type, coursesWorker);
+  yield takeEvery(courseLoadingStart.type, courseWorker);
 }
 
 export default coursesSaga;

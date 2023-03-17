@@ -19,6 +19,7 @@ import NumbersIcon from '@mui/icons-material/Numbers';
 import EventIcon from '@mui/icons-material/Event';
 import { getLocalDate } from '../../utils/date-helpers';
 import { PATHS } from '../../constants';
+import { SkillsBlock } from '../molecules/SkillsBlock';
 
 interface Props {
   course: ICourse;
@@ -46,7 +47,12 @@ export const CourseCard: FC<Props> = ({ course }) => {
   return (
     <Grid item>
       <Card
-        sx={{ display: 'flex', p: 2, flexDirection: { xs: 'column', lg: 'row' }, maxWidth: '100%' }}
+        sx={{
+          display: 'flex',
+          p: 2,
+          flexDirection: { xs: 'column', lg: 'row' },
+          maxWidth: '100%',
+        }}
       >
         <CardMedia
           component="img"
@@ -61,7 +67,12 @@ export const CourseCard: FC<Props> = ({ course }) => {
               {title}
             </Typography>
 
-            <Rating name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
+            <Rating
+              name="half-rating-read"
+              defaultValue={rating}
+              precision={0.5}
+              readOnly
+            />
 
             <Typography gutterBottom variant="subtitle1" component="p">
               {description}
@@ -93,23 +104,7 @@ export const CourseCard: FC<Props> = ({ course }) => {
               </ListItem>
             </List>
 
-            {skills && skills.length > 0 && (
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                {skills.map((skill) => (
-                  <Box
-                    key={skill}
-                    sx={{
-                      padding: '10px',
-                      backgroundColor: 'purple',
-                      color: '#fff',
-                      borderRadius: '10px',
-                    }}
-                  >
-                    {skill}
-                  </Box>
-                ))}
-              </Box>
-            )}
+            {skills && skills.length > 0 && <SkillsBlock skills={skills} />}
           </CardContent>
 
           <CardActions sx={{ marginTop: 'auto' }}>
