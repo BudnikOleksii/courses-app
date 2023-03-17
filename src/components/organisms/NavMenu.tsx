@@ -22,7 +22,7 @@ export const NavMenu: FC<Props> = memo(({ onDrawerToggle }) => {
 
   return (
     <AppBar component="nav">
-      <Toolbar sx={{ maxWidth: 1440, width: '100%', margin: 'auto' }}>
+      <Toolbar>
         <IconButton
           color="inherit"
           aria-label="open drawer"

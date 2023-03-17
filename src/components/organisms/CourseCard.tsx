@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ICourse } from '../../types/course';
-import Card from '@mui/material/Card';
+import { CardItem } from '../atoms/CardItem';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -19,6 +19,7 @@ import NumbersIcon from '@mui/icons-material/Numbers';
 import EventIcon from '@mui/icons-material/Event';
 import { getLocalDate } from '../../utils/date-helpers';
 import { PATHS } from '../../constants';
+import { SkillsBlock } from '../molecules/SkillsBlock';
 
 interface Props {
   course: ICourse;
@@ -45,9 +46,7 @@ export const CourseCard: FC<Props> = ({ course }) => {
 
   return (
     <Grid item>
-      <Card
-        sx={{ display: 'flex', p: 2, flexDirection: { xs: 'column', lg: 'row' }, maxWidth: '100%' }}
-      >
+      <CardItem>
         <CardMedia
           component="img"
           image={previewImageLink + '/cover.webp'}
@@ -81,7 +80,7 @@ export const CourseCard: FC<Props> = ({ course }) => {
                   <NumbersIcon />
                 </ListItemIcon>
 
-                <ListItemText primary={`Lessons: ${lessonsCount}`} />
+                <ListItemText primary={`Lessons: ${lessonsCount || 'Unknown'}`} />
               </ListItem>
 
               <ListItem disablePadding>
@@ -93,23 +92,7 @@ export const CourseCard: FC<Props> = ({ course }) => {
               </ListItem>
             </List>
 
-            {skills && skills.length > 0 && (
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                {skills.map((skill) => (
-                  <Box
-                    key={skill}
-                    sx={{
-                      padding: '10px',
-                      backgroundColor: 'purple',
-                      color: '#fff',
-                      borderRadius: '10px',
-                    }}
-                  >
-                    {skill}
-                  </Box>
-                ))}
-              </Box>
-            )}
+            {skills && skills.length > 0 && <SkillsBlock skills={skills} />}
           </CardContent>
 
           <CardActions sx={{ marginTop: 'auto' }}>
@@ -118,7 +101,7 @@ export const CourseCard: FC<Props> = ({ course }) => {
             </Button>
           </CardActions>
         </Box>
-      </Card>
+      </CardItem>
     </Grid>
   );
 };

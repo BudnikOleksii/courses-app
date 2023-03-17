@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { ICourse } from '../../types/course';
 import { CourseCard } from './CourseCard';
-import Grid from '@mui/material/Grid';
+import { GridContainer } from '../atoms/GridContainer';
 
 interface Props {
   courses: ICourse[];
@@ -9,10 +9,10 @@ interface Props {
 
 export const CoursesList: FC<Props> = ({ courses }) => {
   return (
-    <Grid container spacing={2} sx={{ mt: 3, p: 3 }}>
+    <GridContainer>
       {courses.map((course) => (
         <CourseCard key={course.id} course={course} />
       ))}
-    </Grid>
+    </GridContainer>
   );
 };

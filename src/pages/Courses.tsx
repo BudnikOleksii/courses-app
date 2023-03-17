@@ -5,10 +5,10 @@ import { registerAction } from '../features/actions-info/actions-info-slice';
 import { selectCourses } from '../features/courses/courses-selectors';
 import { coursesLoadingStart } from '../features/courses/courses-slice';
 import { Heading } from '../components/molecules/Heading';
+import { CoursesList } from '../components/organisms/CoursesList';
 import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import { COURSES_PER_PAGE, PATHS } from '../constants';
-import { CoursesList } from '../components/organisms/CoursesList';
 
 const Courses = () => {
   const dispatch = useAppDispatch();
@@ -35,7 +35,9 @@ const Courses = () => {
       <Heading title="Courses" />
 
       {courses && courses.length > 0 && (
-        <CoursesList courses={courses.slice(indexOfFirstHero, indexOfLastHero)} />
+        <CoursesList
+          courses={courses.slice(indexOfFirstHero, indexOfLastHero)}
+        />
       )}
 
       {courses && courses.length === 0 && (
