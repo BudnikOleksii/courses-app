@@ -7,7 +7,7 @@ import { courseLoadingStart } from '../features/courses/courses-slice';
 import { selectIsActionInProcess } from '../features/actions-info/actions-info-selector';
 import Box from '@mui/material/Box';
 import { CourseCard } from '../components/organisms/CourseCard';
-import { LessonsBlock } from '../components/organisms/LessonsBlock';
+import { CourseContent } from '../components/organisms/CourseContent';
 
 const Course = () => {
   const { courseId = '' } = useParams();
@@ -27,7 +27,7 @@ const Course = () => {
       {selectedCourse && !isLoading && (
         <Box component="section">
           <CourseCard course={selectedCourse} />
-          <LessonsBlock lessons={selectedCourse.lessons} />
+          <CourseContent lessons={selectedCourse.lessons} />
         </Box>
       )}
 

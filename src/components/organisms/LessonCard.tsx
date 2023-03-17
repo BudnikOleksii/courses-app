@@ -29,51 +29,45 @@ export const LessonCard: FC<Props> = ({ lesson }) => {
   const { previewImageLink, title, order, link, id, type, duration, status } = lesson;
 
   return (
-    <Grid item xs={12} sm={6}>
-      <CardItem>
-        <CardMedia
-          component="img"
-          image={type === 'video' ? `${previewImageLink}/lesson-${order}.webp` : imagePlaceholder}
-          alt={title}
-          sx={{ width: { xs: '100%', lg: '50%' } }}
-        />
+    <CardItem>
+      <CardMedia
+        component="img"
+        image={type === 'video' ? `${previewImageLink}/lesson-${order}.webp` : imagePlaceholder}
+        alt={title}
+        sx={{ width: { xs: '100%', lg: '50%' } }}
+      />
 
-        <Box sx={{ width: { xs: '100%', lg: '50%' } }}>
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h3">
-              {title}
-            </Typography>
+      <Box sx={{ width: { xs: '100%', lg: '50%' } }}>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h3">
+            {title}
+          </Typography>
 
-            <List>
-              <ListItem disablePadding>
-                <ListItemIcon>
-                  <HourglassTopIcon />
-                </ListItemIcon>
+          <List>
+            <ListItem disablePadding>
+              <ListItemIcon>
+                <HourglassTopIcon />
+              </ListItemIcon>
 
-                <ListItemText primary={`Duration: ${duration}`} />
-              </ListItem>
+              <ListItemText primary={`Duration: ${duration}`} />
+            </ListItem>
 
-              <ListItem disablePadding>
-                <ListItemIcon>{status === 'locked' ? <LockIcon /> : <LockOpenIcon />}</ListItemIcon>
+            <ListItem disablePadding>
+              <ListItemIcon>{status === 'locked' ? <LockIcon /> : <LockOpenIcon />}</ListItemIcon>
 
-                <ListItemText primary={`Status: ${status}`} />
-              </ListItem>
+              <ListItemText primary={`Status: ${status}`} />
+            </ListItem>
 
-              <ListItem disablePadding>
-                <ListItemIcon>
-                  {type === 'video' ? <OndemandVideoIcon /> : <ArticleIcon />}
-                </ListItemIcon>
+            <ListItem disablePadding>
+              <ListItemIcon>
+                {type === 'video' ? <OndemandVideoIcon /> : <ArticleIcon />}
+              </ListItemIcon>
 
-                <ListItemText primary={`Type: ${type}`} />
-              </ListItem>
-            </List>
-          </CardContent>
-
-          <CardActions>
-            <Button size="large">View</Button>
-          </CardActions>
-        </Box>
-      </CardItem>
-    </Grid>
+              <ListItemText primary={`Type: ${type}`} />
+            </ListItem>
+          </List>
+        </CardContent>
+      </Box>
+    </CardItem>
   );
 };
