@@ -17,7 +17,7 @@ export const CourseContent: FC<Props> = ({ lessons }) => {
   };
 
   return (
-    <Grid container spacing={2} sx={{ mt: 3, maxHeight: 585, overflowY: 'auto' }}>
+    <Grid container spacing={2} sx={{ mt: 3, maxHeight: 700, overflowY: 'auto' }}>
       <Grid item xs={12} lg={9}>
         {currentLesson.type === 'video' ? (
           <VideoBlock lesson={currentLesson} />

@@ -1,6 +1,6 @@
 import { Maybe } from './helper-types';
 
-interface ICourseVideoPreview {
+export interface ICourseVideoPreview {
   link: string;
   duration: number;
   previewImageLink: string;

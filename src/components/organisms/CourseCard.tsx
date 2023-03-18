@@ -20,6 +20,7 @@ import EventIcon from '@mui/icons-material/Event';
 import { getLocalDate } from '../../utils/date-helpers';
 import { PATHS } from '../../constants';
 import { SkillsBlock } from '../molecules/SkillsBlock';
+import { HeadingWithPopover } from '../molecules/HeadingWithPopover';
 
 interface Props {
   course: ICourse;
@@ -57,9 +58,7 @@ export const CourseCard: FC<Props> = ({ course, isWithLink }) => {
 
         <Box>
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {title}
-            </Typography>
+            <HeadingWithPopover title={title} courseVideoPreview={courseVideoPreview} />
 
             <Rating name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
 

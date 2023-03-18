@@ -5,6 +5,7 @@ import { errorPlaceholder } from '../../constants';
 import { ILesson } from '../../types/course';
 import { useAppDispatch } from '../../app/hooks';
 import { updateCurrentTime } from '../../features/courses/courses-slice';
+import Typography from '@mui/material/Typography';
 
 type Props = {
   lesson: ILesson;
@@ -46,10 +47,36 @@ export const VideoBlock: FC<Props> = ({ lesson }) => {
           }
         });
       }
-
-      video.addEventListener('pause', () => {
+      const handlePause = () => {
         dispatch(updateCurrentTime({ ...lesson, currentTime: video.currentTime }));
-      });
+      };
+
+      const handleChangeSpeed = (event: KeyboardEvent) => {
+        if (!event.altKey) {
+          return;
+        }
+
+        const rate = video.playbackRate;
+
+        switch (event.key) {
+          case 'p':
+            video.playbackRate = rate >= 2 ? rate : rate + 0.25;
+            break;
+          case 'm':
+            video.playbackRate = rate <= 0.25 ? rate : rate - 0.25;
+            break;
+          default:
+            break;
+        }
+      };
+
+      video.addEventListener('pause', handlePause);
+      window.addEventListener('keydown', handleChangeSpeed);
+
+      return () => {
+        video.removeEventListener('pause', handlePause);
+        window.removeEventListener('keydown', handleChangeSpeed);
+      };
     }
   }, [link]);
 
@@ -58,7 +85,12 @@ export const VideoBlock: FC<Props> = ({ lesson }) => {
       {isError ? (
         <img src={errorPlaceholder} alt="error" />
       ) : (
-        <video ref={videoRef} controls={true} style={{ width: '100%' }} />
+        <>
+          <Typography gutterBottom variant="h5" component="p">
+            You can increase video speed by pressing alt + p and decrease with alt + m
+          </Typography>
+          <video ref={videoRef} controls={true} style={{ width: '100%' }} />
+        </>
       )}
     </Box>
   );
