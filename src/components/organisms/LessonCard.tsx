@@ -14,9 +14,7 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import ArticleIcon from '@mui/icons-material/Article';
 import Box from '@mui/material/Box';
-
-const imagePlaceholder =
-  'https://wisey.app/assets/images/web/lessons-covers/the-power-of-self-discipline-how-to-stay-on-track/lesson-1/lesson-1.webp';
+import { previewPlaceholder } from '../../constants';
 
 type Props = {
   lesson: ILesson;
@@ -29,7 +27,7 @@ export const LessonCard: FC<Props> = ({ lesson }) => {
     <CardItem>
       <CardMedia
         component="img"
-        image={type === 'video' ? `${previewImageLink}/lesson-${order}.webp` : imagePlaceholder}
+        image={type === 'video' ? `${previewImageLink}/lesson-${order}.webp` : previewPlaceholder}
         alt={title}
         sx={{ width: { xs: '100%', lg: '50%' } }}
       />

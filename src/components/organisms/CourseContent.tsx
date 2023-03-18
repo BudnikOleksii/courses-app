@@ -1,11 +1,9 @@
 import { FC, useState } from 'react';
 import { ILesson } from '../../types/course';
-import { GridContainer } from '../atoms/GridContainer';
 import Grid from '@mui/material/Grid';
 import { VideoBlock } from './VideoBlock';
 import List from '@mui/material/List';
 import { LessonInfo } from './LessonInfo';
-import Box from '@mui/material/Box';
 
 type Props = {
   lessons: ILesson[];
@@ -21,7 +19,15 @@ export const CourseContent: FC<Props> = ({ lessons }) => {
   return (
     <Grid container spacing={2} sx={{ mt: 3, maxHeight: 585, overflowY: 'auto' }}>
       <Grid item xs={12} lg={9}>
-        <VideoBlock link={currentLesson.link} />
+        {currentLesson.type === 'video' ? (
+          <VideoBlock lesson={currentLesson} />
+        ) : (
+          <img
+            src={`${currentLesson.previewImageLink}/lesson-${currentLesson.order}.webp`}
+            alt={currentLesson.title}
+            style={{ width: '100%' }}
+          />
+        )}
       </Grid>
 
       <Grid item xs={12} lg={3}>

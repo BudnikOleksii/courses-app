@@ -23,7 +23,8 @@ export interface ILesson {
   previewImageLink: string;
   status: 'locked' | 'unlocked';
   title: string;
-  type: 'article' | 'video';
+  type: 'article' | 'video' | 'quiz_simulator';
+  currentTime?: number;
 }
 
 export interface ICourse {

@@ -8,18 +8,7 @@ import Modal from '@mui/material/Modal';
 import LockIcon from '@mui/icons-material/Lock';
 import { LessonCard } from './LessonCard';
 import { purple } from '@mui/material/colors';
-
-const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '70%',
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
+import { ModalStyle } from '../../constants';
 
 type Props = {
   lesson: ILesson;
@@ -66,13 +55,14 @@ export const LessonInfo: FC<Props> = ({ lesson, activeLessonId, onCurrentChange 
       <Button size="small" onClick={handleOpen}>
         {isLocked ? <LockIcon /> : 'Info'}
       </Button>
+
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-lesson-info"
         aria-describedby="modal-lesson-description"
       >
-        <Box sx={style}>
+        <Box sx={ModalStyle}>
           <LessonCard lesson={lesson} />
         </Box>
       </Modal>
