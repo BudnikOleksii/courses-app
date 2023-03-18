@@ -1,7 +1,7 @@
 # Courses app
 
 ## Demo links:
-- [Netlify DEMO LINK](https://coruscating-conkies-890f1a.netlify.app/courses/9c5d78a1-c393-4666-8de4-b9d10c424d30/)
+- [Netlify DEMO LINK](https://coruscating-conkies-890f1a.netlify.app/)
 
 ### Technologies used:
 - React with Typescript
