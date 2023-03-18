@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Maybe } from '../../types/helper-types';
-import { ICourse, ICourseResponse } from '../../types/course';
+import { ICourse, ICourseResponse, ILesson } from '../../types/course';
 
 interface CoursesState {
   courses: Maybe<ICourse[]>;
@@ -23,6 +23,18 @@ const coursesSlice = createSlice({
     courseLoadingStart: (state, action) => {},
     courseSuccess: (state, action) => {
       state.selectedCourse = action.payload;
+      state.selectedCourse?.lessons.sort((a, b) => a.order - b.order);
+    },
+    updateCurrentTime: (state, action) => {
+      const updatedLessons =
+        state.selectedCourse?.lessons.map((lesson) =>
+          lesson.id !== action.payload.id ? lesson : action.payload
+        ) || [];
+
+      state.selectedCourse = {
+        ...state.selectedCourse,
+        lessons: updatedLessons as ILesson[],
+      } as ICourseResponse;
     },
   },
 });
@@ -32,6 +44,7 @@ export const {
   coursesSuccess,
   courseLoadingStart,
   courseSuccess,
+  updateCurrentTime,
 } = coursesSlice.actions;
 
 export default coursesSlice.reducer;
