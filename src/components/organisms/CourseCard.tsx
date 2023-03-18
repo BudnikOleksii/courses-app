@@ -23,9 +23,10 @@ import { SkillsBlock } from '../molecules/SkillsBlock';
 
 interface Props {
   course: ICourse;
+  isWithLink?: boolean;
 }
 
-export const CourseCard: FC<Props> = ({ course }) => {
+export const CourseCard: FC<Props> = ({ course, isWithLink }) => {
   const {
     title,
     id,
@@ -95,11 +96,13 @@ export const CourseCard: FC<Props> = ({ course }) => {
             {skills && skills.length > 0 && <SkillsBlock skills={skills} />}
           </CardContent>
 
-          <CardActions sx={{ marginTop: 'auto' }}>
-            <Button onClick={handleOpenCourse} size="large">
-              Details
-            </Button>
-          </CardActions>
+          {isWithLink && (
+            <CardActions sx={{ marginTop: 'auto' }}>
+              <Button onClick={handleOpenCourse} size="large">
+                Details
+              </Button>
+            </CardActions>
+          )}
         </Box>
       </CardItem>
     </Grid>

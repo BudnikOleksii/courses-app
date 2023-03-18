@@ -8,6 +8,7 @@ import { selectIsActionInProcess } from '../features/actions-info/actions-info-s
 import Box from '@mui/material/Box';
 import { CourseCard } from '../components/organisms/CourseCard';
 import { CourseContent } from '../components/organisms/CourseContent';
+import NotFound from './NotFound';
 
 const Course = () => {
   const { courseId = '' } = useParams();
@@ -31,7 +32,7 @@ const Course = () => {
         </Box>
       )}
 
-      {!selectedCourse && !isLoading && <p>NOT FOUND</p>}
+      {!selectedCourse && !isLoading && <NotFound />}
     </>
   );
 };

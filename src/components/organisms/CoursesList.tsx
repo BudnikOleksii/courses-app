@@ -11,7 +11,7 @@ export const CoursesList: FC<Props> = ({ courses }) => {
   return (
     <GridContainer>
       {courses.map((course) => (
-        <CourseCard key={course.id} course={course} />
+        <CourseCard key={course.id} course={course} isWithLink={true} />
       ))}
     </GridContainer>
   );
