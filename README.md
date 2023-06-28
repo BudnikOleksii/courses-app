@@ -8,6 +8,7 @@
 - Redux Toolkit, Redux-Saga
 - UI Library: MaterialUI
 - Axios
+- Jest, RTL
 
 ### Project description
 A  web application for e-learning purposes. The application has two main pages, the courses page, and the course page.
